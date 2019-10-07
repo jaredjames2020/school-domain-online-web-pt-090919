@@ -2,8 +2,8 @@
 require 'pry'
 class School
   
-  attr_accessor :name, :roster, :add_student, :grade
-  attr_reader :add_student
+  attr_accessor :roster, :grade
+  
     
   def initialize(name)
     @name = name
@@ -11,24 +11,21 @@ class School
   end
  
   def add_student(name, grade)
-      names = []
-      names << name
-      if @roster[grade] != nil
-        counter = 1
-        @roster[grade][counter] = name
+      if roster[grade] != nil
+         roster[grade] << name
       else
-        @roster[grade] = names
+         roster[grade] = [name]
       end
-    end
-    
-  def grade(grade)
-    if @roster.keys.include?(grade)
-      @roster[grade]
   end
+
+  def grade(grade)
+    #if roster.keys.include?(grade)
+       roster[grade]
+  #end
 end
     
   def sort
-    @roster.each do |grade, name|
+    @roster.map do |grade, name|
       @roster[grade] = name.sort
     #binding.pry
         end
